@@ -1,21 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const moviesController = require('../controllers/moviesController');
 
-router.get('/', (request, response, next)=>{
-  //Mandar al usuario una respuesta
-  response.send("Estas en /movies/");
-});
+router.get('/', moviesController.index);
 
-router.post('/', (request, response, next)=>{
-  response.send("Estas en /movies/ -> POST");
-});
+router.post('/', moviesController.create);
 
-router.put('/', (request, response, next)=>{
-  response.send("Estas en /movies/ -> PUT");
-});
+router.put('/:id', moviesController.update);
 
-router.delete('/', (request, response, next)=>{
-  response.send("Estas en /movies/ -> DELETE");
-});
+router.delete('/:id', moviesController.remove);
 
 module.exports = router;
