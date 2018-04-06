@@ -1,12 +1,42 @@
 const express = require('express');
+const Movie = require('../models/movie');
+
 
 function index(request, response, next){
-  //Mandar al usuario una respuesta
-  response.send("Estas en /movies/ -> GET");
+  Movie.paginate({},{page:1, limit: 3}, (err, docs)=>{
+    console.log(docs);
+    //Mandar al usuario una respuesta
+    response.json(docs);
+  });
 }
 
 function create(request, response, next){
-  response.send("Estas en /movies/ -> POST");
+  const title = req.body.title;
+  const genre = req.body.genre;
+  const duration = req.body.duration;
+  const director = req.body.director;
+
+  let movie = new Movie();
+  movie.title = title;
+  movie.genre = genre;
+  movie.duration = duration;
+  movie.director = director;
+
+  movie.save((err, obj)=>);
+  if(err){
+    response.json({
+      error: false,
+      message: 'Pelicula Guardada',
+      obj: obj
+    })
+  }else{
+    response.json({
+      error: false,
+      message: 'Pelicula Guardada',
+      obj: obj
+    })
+  }
+  //response.send("Estas en /movies/ -> POST");
 }
 
 function update(request, response, next){
