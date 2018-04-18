@@ -24,7 +24,8 @@ var server = http.createServer(app);
 
 /*Cobexion a la base de datos*/
 // mongodb://<user>:<password>@<dominio>:<puerto>/<base de datos>
-const uri = 'mongodb://localhost:27017/videoclub';
+//const uri = 'mongodb://localhost:27017/videoclub';
+const uri = 'mongodb://melissa:123456789@ds143539.mlab.com:43539/videoclub'
 mongoose.connect(uri);
 const db = mongoose.connection;
 
